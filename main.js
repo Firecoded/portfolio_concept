@@ -15,12 +15,15 @@ function goHome(){
     switch(currentPosition){
         case 'skills':
             $('.skills-cont').css('height', '');
+            $('.hello').css('width', '');
+            $('.jake-img').css({'opacity': '', 'height': ''});
             currentPosition = 'home';
             break;
         case 'about':
             $('.box1').css('width', '');
             $('.box2').css('width', '');
             $('.hello').css('width', '');
+            $('.jake-img').css({'opacity': '', 'height': ''});
             currentPosition = 'home';
             break;
 
@@ -32,10 +35,12 @@ function showAbout(){
             $('.box1').css('width', '30%');
             $('.box2').css('width', '70%');
             $('.hello').css('width', '0px');
+            $('.jake-img').css({'opacity': '1', 'height': '60%'});
             currentPosition = 'about';
             break;
         case 'skills':
             $('.skills-cont').css('height', '');
+            $('.hello').css('width', '0px');
             currentPosition = 'home';
             showAbout();
             break;
@@ -51,7 +56,6 @@ function showSkills(){
         case 'about':
             $('.box1').css('width', '');
             $('.box2').css('width', '');
-            $('.hello').css('width', '');
             currentPosition = 'home';
             showSkills();
             break;

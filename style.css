@@ -99,7 +99,28 @@ ul li {
     margin: 0 10px;
     cursor: pointer;
 }
-
+/***************** about ******************/
+.image-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.jake-img{
+    width: 80%;
+    opacity: 0;
+    left: 10%;
+    height: 0%;
+    background-image: url('assets/images/jake.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: absolute;
+    overflow: hidden;
+    transition-duration: .8s;
+}
 /***************** Skills *****************/
 .skills-cont{
     width: 100%;
