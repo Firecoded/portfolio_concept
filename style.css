@@ -56,8 +56,8 @@ html, body {
     color: #2C302E;
     font-weight: 600;
     font-size: 85px;
-    height: 200px;
-    width: 161px;
+    height: 105px;
+    width: 250px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -83,6 +83,7 @@ html, body {
 }
 .period{
     color: #5CC8FF;
+    text-shadow: 0px 0px 1px #2C302E;
 }
 
 /***************** NAV *********************/
@@ -172,16 +173,18 @@ ul li {
     transition-duration: .8s;
     position: absolute;
     z-index: 6;
-    background-color: #5CC8FF;
+    
     overflow: hidden;
     display: flex;
     justify-content: center;
 }
 .skills-cont1{
     top: 0;
+    background-color: #adb3ad;
 }
 .skills-cont2{
     bottom: 0;
+    background-color: #5CC8FF;
 }
 .skills-content-cont{
     height: 80%;
@@ -189,7 +192,6 @@ ul li {
     position: absolute;
     bottom: 10%;
     left: 10%;
-    border: 1px solid red;
     transition-duration: .8s;   
 }
 .icon-cont{
@@ -198,7 +200,6 @@ ul li {
     margin: 0% 0;
     top: 25%;
     position: relative;
-    border: 1px solid red;
     display: inline-block;
     overflow: hidden;
 }

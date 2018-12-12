@@ -4,9 +4,10 @@ let currentPosition = 'home';
 
 function init(){
     applyClickHandlers();
+    $('.name').css('color', '#5CC8FF');
 }
 
-function applyClickHandlers(){
+function applyClickHandlers(){  
     $('.name').click(goHome);
     $('.about').click(showAbout);
     $('.skills').click(showSkills);
@@ -17,14 +18,17 @@ function goHome(){
             $('.skills-cont1, .skills-cont2').css('height', '');
             $('.hello').css('width', '');
             $('.img-cover').css('height', '');
+            $('.name').css('color', '#5CC8FF')
             currentPosition = 'home';
             break;
         case 'about':
+            $('.about').css('color', '');
             $('.box1').css('width', '');
             $('.box2').css('width', '');
             $('.hello').css('width', '');
             $('.img-cover').css('height', '');
             $('.about-text-cover').css('width', '');
+            $('.name').css('color', '#5CC8FF');
             currentPosition = 'home';
             break;
 
@@ -33,14 +37,17 @@ function goHome(){
 function showAbout(){
     switch(currentPosition){
         case 'home':
+            $('.name').css('color', '');
             $('.box1').css('width', '30%');
             $('.box2').css('width', '70%');
             $('.hello').css('width', '0px');
             $('.img-cover').css('height', '0%');
             $('.about-text-cover').css('width', '0px');
+            $('.about').css('color', '#5CC8FF')
             currentPosition = 'about';
             break;
         case 'skills':
+            $('.skills').css('color', '');
             $('.skills-cont1, .skills-cont2').css('height', '');
             $('.hello').css('width', '0px');
             $('.img-cover').css('height', '0%');
@@ -53,10 +60,13 @@ function showAbout(){
 function showSkills(){
     switch(currentPosition){
         case 'home':
+            $('.name').css('color', '');
             $('.skills-cont1, .skills-cont2').css('height', '50%');
+            $('.skills').css('color', '#5CC8FF')
             currentPosition = 'skills';
             break;
         case 'about':
+            $('.about').css('color', '');
             $('.box1').css('width', '');
             $('.box2').css('width', '');
             $('.about-text-cover').css('width', '');
