@@ -1,6 +1,7 @@
 $(document).ready(init);
 
 let currentPosition = 'home';
+let canIClick = true;
 
 function init(){
     applyClickHandlers();
@@ -15,24 +16,28 @@ function applyClickHandlers(){
     $('.contact').click(showContact);
 }
 function goHome(){
+    if(!canIClick){
+        return;
+    }
     switch(currentPosition){
         case 'skills':
             changeNavColorAndCurPosition('skills', 'home');
+            collapseSkills();
+            $('.box1, .box2').css('width', '');
             $('.about-text-cover').css('width', '');
-            $('.skills-cont1, .skills-cont2').css('height', '');
             $('.hello').css('width', '');
             $('.img-cover').css('height', '');
             break;
         case 'about':
             changeNavColorAndCurPosition('about', 'home');
-            $('.box1').css('width', '');
-            $('.box2').css('width', '');
+            collapseAbout();
             $('.hello').css('width', '');
-            $('.img-cover').css('height', '');
-            $('.about-text-cover').css('width', '');
             break;
         case 'projects':
             changeNavColorAndCurPosition('projects', 'home');
+            $('.box1, .box2').css('width', '');
+            $('.hello').css('width', '');
+            collapseProjects();
             break;
         case 'contact':
             changeNavColorAndCurPosition('contact', 'home');
@@ -40,67 +45,80 @@ function goHome(){
     }
 }
 function showAbout(){
+    if(!canIClick){
+        return;
+    }
     switch(currentPosition){
         case 'home':
             changeNavColorAndCurPosition('home', 'about');
-            $('.box1').css('width', '30%');
-            $('.box2').css('width', '70%');
+            expandAbout();
             $('.hello').css('width', '0px');
-            $('.img-cover').css('height', '0%');
-            $('.about-text-cover').css('width', '0px');
             break;
         case 'skills':
             changeNavColorAndCurPosition('skills', 'about');
-            $('.skills-cont1, .skills-cont2').css('height', '');
+            collapseSkills();
             $('.hello').css('width', '0px');
-            $('.img-cover').css('height', '0%');
-            $('.box1').css('width', '30%');
-            $('.box2').css('width', '70%');
-            $('.about-text-cover').css('width', '0px');
+            expandAbout();
             break;
         case 'projects':
             changeNavColorAndCurPosition('projects', 'about');
+            expandAbout();
+            collapseProjects();
             break;
         case 'contact':
             changeNavColorAndCurPosition('contact', 'about');
+            expandAbout();
             break;
     }
 }
 
 function showSkills(){
+    if(!canIClick){
+        return;
+    }
     switch(currentPosition){
         case 'home':
             changeNavColorAndCurPosition('home', 'skills');
-            $('.skills-cont1, .skills-cont2').css('height', '50%');
+            expandSkills();  //needs copying all around
             break;
         case 'about':
             changeNavColorAndCurPosition('about', 'skills');
-            $('.box1').css('width', '');
-            $('.box2').css('width', '');
-            $('.skills-cont1, .skills-cont2').css('height', '50%');
+            $('.box1, .box2').css('width', '');
+            expandSkills();
             break;
         case 'contact':
             changeNavColorAndCurPosition('contact', 'skills');
             break;
         case 'projects':
             changeNavColorAndCurPosition('projects', 'skills');
+            collapseProjects();
+            expandSkills();
             break;
     }  
 }
 function showProjects(){
+    if(!canIClick){
+        return;
+    }
     switch(currentPosition){
-        case 'home':
+        case 'home': 
             changeNavColorAndCurPosition('home', 'projects');
-            $('.skills-cont1, .skills-cont2').css('height', '50%');
+            $('.hello').css('width', '0px');
+            expandProjects();
             break;
         case 'about':
             changeNavColorAndCurPosition('about', 'projects');
-            $('.box1').css('width', '');
-            $('.box2').css('width', '');
-            $('.skills-cont1, .skills-cont2').css('height', '50%');
+            expandProjects();
+            $('.hello').css('width', '0px');
+            $('.img-cover').css('height', '');
+            $('.about-text-cover').css('width', '');
             break;
         case 'skills':
             changeNavColorAndCurPosition('skills', 'projects');
+            $('.hello').css('width', '0px');
+            collapseSkills();
+            collapseAbout();
+            expandProjects();
             break;    
         case 'contact':
             changeNavColorAndCurPosition('contact', 'projects');    
@@ -109,17 +127,15 @@ function showProjects(){
 }
 
 function showContact(){
+    if(!canIClick){
+        return;
+    }
     switch(currentPosition){
         case 'home':
-            changeNavColorAndCurPosition('home', 'contact');
-            $('.skills-cont1, .skills-cont2').css('height', '50%');
-            $('.skills').css('color', '#5CC8FF');            
+            changeNavColorAndCurPosition('home', 'contact');         
             break;
         case 'about':
             changeNavColorAndCurPosition('about', 'contact');
-            $('.box1').css('width', '');
-            $('.box2').css('width', '');
-            $('.skills-cont1, .skills-cont2').css('height', '50%');
             break;
         case 'skills':
             changeNavColorAndCurPosition('skills', 'contact');
@@ -141,4 +157,40 @@ function changeNavColorAndCurPosition(textToUnhighlight, textToHighlight){
     $(positionRef[textToUnhighlight]).css('color', '');
     $(positionRef[textToHighlight]).css('color', '#5CC8FF');
     currentPosition = textToHighlight;
+}
+function expandAbout(){
+    $('.box1').css('width', '30%');
+    $('.box2').css('width', '70%');
+    $('.img-cover').css('height', '0%');
+    $('.about-text-cover').css('width', '0px');
+}
+function collapseAbout(){
+    $('.box1, .box2').css('width', '');
+    $('.img-cover').css('height', '');
+    $('.about-text-cover').css('width', '');
+}
+
+function expandProjects(){
+    $('.box1').css('width', '0%');
+    $('.box2').css('width', '100%');
+    $('.project-cont').css('z-index', '5');
+    $('.project1, .project2, .project3').css('width', '30%');
+    
+}
+function collapseProjects(){
+    canIClick = false;
+    setTimeout(()=>{
+        $('.project-cont').css('z-index', '');
+        canIClick = true;
+    }, 800);
+    $('.project1, .project2, .project3').css('width', '');
+}
+function expandSkills(){
+    $('.skills-cont1, .skills-cont2').css('height', '50%');
+    $('.icon-cover1, .icon-cover2').css('height', '0%'); 
+}
+
+function collapseSkills(){
+    $('.skills-cont1, .skills-cont2').css('height', '');
+    $('.icon-cover1, .icon-cover2').css('height', '');
 }
